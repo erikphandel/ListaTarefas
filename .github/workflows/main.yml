@@ -50,10 +50,12 @@ jobs:
           cache: "npm"
           cache-dependency-path: ./lista-tarefas-testes/package-lock.json
       - name: Instalação de dependências
-        run: npm install -g vercel@latest
+        run: npm ci
+      - name: Build
+        run: npm run build
       - name: Deploy no Vercel
-        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} --cwd=.
+        run: npx vercel deploy --prod --yes
         env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
- 
