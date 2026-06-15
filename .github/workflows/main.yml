@@ -20,6 +20,8 @@ jobs:
         with:
           node-version: '20'
       - name: Instalação de dependências
+        working-directory: ./lista-tarefas-testes
         run: npm install
       - name: Rodar o build
+        working-directory: ./lista-tarefas-testes
         run: npm run build
