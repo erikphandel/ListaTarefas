@@ -54,7 +54,7 @@ jobs:
       - name: Rodar o build
         run: npm run build
       - name: Deploy no Vercel
-        uses: amondnet/vercel-action@v26
+        uses: amondnet/vercel-action@latest
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
