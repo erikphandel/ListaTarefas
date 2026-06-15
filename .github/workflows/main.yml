@@ -37,9 +37,6 @@ jobs:
   deploy:
     needs: build-tests
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./lista-tarefas-testes
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -51,8 +48,10 @@ jobs:
           cache-dependency-path: ./lista-tarefas-testes/package-lock.json
       - name: Instalação de dependências
         run: npm ci
+        working-directory: ./lista-tarefas-testes
       - name: Build
         run: npm run build
+        working-directory: ./lista-tarefas-testes
       - name: Deploy no Vercel
         run: npx vercel deploy --prod --yes
         env:
