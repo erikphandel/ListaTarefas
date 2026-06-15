@@ -12,6 +12,9 @@ jobs:
   # Build
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./lista-tarefas-testes
     steps:
       - name: Checkout do código
         uses: actions/checkout@v6
@@ -20,8 +23,6 @@ jobs:
         with:
           node-version: '20'
       - name: Instalação de dependências
-        working-directory: ./lista-tarefas-testes
         run: npm install
       - name: Rodar o build
-        working-directory: ./lista-tarefas-testes
         run: npm run build
