@@ -30,9 +30,7 @@ jobs:
       - name: Instalação de dependências
         run: npm ci
       - name: Rodar testes
-        run: npm run test
-        env:
-          CI: true
+        run: npm run test -- --watch=false
       - name: Rodar o build
         run: npm run build
 
