@@ -33,5 +33,31 @@ jobs:
         run: npm run test -- --watch=false
       - name: Rodar o build
         run: npm run build
-
+  # Deploy no Vercel      
+  deploy:
+    needs: build-tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./lista-tarefas-testes
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      - name: Instalação do Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: "npm"
+          cache-dependency-path: ./lista-tarefas-testes/package-lock.json
+      - name: Instalação de dependências
+        run: npm ci
+      - name: Rodar o build
+        run: npm run build
+      - name: Deploy no Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
  
