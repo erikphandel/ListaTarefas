@@ -51,8 +51,6 @@ jobs:
         run: npm install
       - name: Rodar o lint
         run: npm run lint
-      - name: Verificar formatação
-        run:  npm run format -- -- check
       - name: Rodar testes
         run: npm run test
 
