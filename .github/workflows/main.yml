@@ -46,7 +46,7 @@ jobs:
         with:
           node-version: '20'
           cache: "npm"
-          cache-dependecy-path: package-lock.json
+          cache-dependency-path: package-lock.json
       - name: Instalação de dependências
         run: npm install
       - name: Rodar o lint
