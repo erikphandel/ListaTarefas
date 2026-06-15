@@ -50,14 +50,10 @@ jobs:
           cache: "npm"
           cache-dependency-path: ./lista-tarefas-testes/package-lock.json
       - name: Instalação de dependências
-        run: npm ci
-      - name: Rodar o build
-        run: npm run build
+        run: npm install -g vercel@latest
       - name: Deploy no Vercel
-        uses: amondnet/vercel-action@latest
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
  
